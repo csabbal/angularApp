@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { CharacterService } from '../../services/character.service';
+import { CharacterListService } from '../../services/characterList.service';
 import { character } from '../../types/rickAndMorty';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterOutlet } from '@angular/router';
-import { ItemComponent } from '../../item/item.component';
+import { ListItemComponent } from '../listItem/listItem.component';
 
 @Component({
   selector: 'app-list',
@@ -13,9 +13,9 @@ import { ItemComponent } from '../../item/item.component';
     CommonModule,
     RouterOutlet,
     HttpClientModule,
-    ItemComponent
+    ListItemComponent
   ],
-  providers:[CharacterService],
+  providers:[CharacterListService],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
 })
@@ -23,12 +23,12 @@ export class ListComponent implements OnInit {
 
   listElements:character[] = []
 
-  constructor(protected characterService: CharacterService) {
+  constructor(protected characterService: CharacterListService) {
 
   }
 
   ngOnInit() {
-    this.characterService.getCharacter().subscribe((it) => {
+    this.characterService.getCharacterList().subscribe((it) => {
       this.listElements = it
     })
   }

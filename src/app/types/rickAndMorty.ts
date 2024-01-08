@@ -12,7 +12,10 @@ export interface characterApiInfo {
     next: string,
     prev: string
 }
-export interface characterApiResponse {
+export interface characterListApiResponse {
     info: characterApiInfo,
     results: character[]
+}
+export interface characterApiResponse extends character {
+
 }
