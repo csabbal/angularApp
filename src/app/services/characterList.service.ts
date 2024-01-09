@@ -12,8 +12,10 @@ export class CharacterListService {
   constructor(public http: HttpClient) { }
 
 
-  getCharacterList(): Observable<character[]> {
-    return this.http.get<characterListApiResponse>('https://rickandmortyapi.com/api/character').pipe(
+  getCharacterList(page = 1): Observable<character[]> {
+    let url = 'https://rickandmortyapi.com/api/character'
+    url = page ? url + '?page=' + page : url
+    return this.http.get<characterListApiResponse>(url).pipe(
       map((it) => {
         console.log('downloaded data', it)
         return it.results

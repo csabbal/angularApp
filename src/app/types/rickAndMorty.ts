@@ -4,7 +4,8 @@ export interface character {
     status: string,
     species: string,
     type: string,
-    gender: string
+    gender: string,
+    image:string
 }
 export interface characterApiInfo {
     count: number,
