@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
-import { character } from '../../types/rickAndMorty';
 import { CommonModule } from '@angular/common';
+import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { character } from '../../types/rickAndMorty';
+
 
 @Component({
   selector: 'app-list-item',

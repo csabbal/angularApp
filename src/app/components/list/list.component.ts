@@ -1,4 +1,4 @@
-import { Component, OnInit, effect, signal } from '@angular/core';
+import { Component, Input, OnInit, effect, importProvidersFrom, signal } from '@angular/core';
 import { CharacterListService } from '../../services/characterList.service';
 import { character } from '../../types/rickAndMorty';
 import { CommonModule } from '@angular/common';
@@ -6,6 +6,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute, RouterModule, RouterOutlet } from '@angular/router';
 import { ListItemComponent } from '../listItem/listItem.component';
 import { Location } from '@angular/common';
+import { routes } from '../../app.routes';
+import { debounceTime, mergeMap, switchMap, tap } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-list',
@@ -16,12 +19,14 @@ import { Location } from '@angular/common';
     HttpClientModule,
     ListItemComponent
   ],
-  providers: [CharacterListService],
+  providers: [
+    CharacterListService
+  ],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
 })
 export class ListComponent implements OnInit {
-
+  @Input('listPart') listPart:number = 0
   readonly page = signal(1);
 
   listElements: character[] = []
@@ -37,7 +42,7 @@ export class ListComponent implements OnInit {
   }
 
   constructor(private route: ActivatedRoute, protected characterService: CharacterListService, private location: Location) {
-    
+
     this.addEffect()
   }
 
@@ -46,14 +51,20 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit() {
-    const pageNumber = this.route.snapshot.paramMap.get('page')
+    const pageNumber = this.listPart.toString() ?? this.route.snapshot.paramMap.get('page')
 
     pageNumber && this.page.set(parseInt(pageNumber))
   }
 
-  fetchData(){
-    this.characterService.getCharacterList(this.page()).subscribe((it) => {
-      this.location.replaceState("/list/"+this.page())
+  fetchData() {
+    of(this.page()).pipe(
+      tap((it)=>{
+        console.log('fetchData with page:' +it)
+      }),
+      debounceTime(1000),
+      mergeMap(it=>this.characterService.getCharacterList(it))
+    ).subscribe((it) => {
+     // this.location.replaceState("/list/" + this.page())
       this.listElements = it
     })
   }

@@ -15,6 +15,7 @@ import { CharacterService } from '../../services/character.service';
   styleUrl: './item.component.scss'
 })
 export class ItemComponent {
+  macska:any
   id!: string;
   data!: character;
   constructor(private route: ActivatedRoute, private characterService: CharacterService) { }

@@ -1,0 +1,18 @@
+
+@for (listPart of this.listParts;track listPart) {
+<div style="min-height: 600px">
+    <div #title >title</div>
+    @defer (on viewport){ 
+        @defer (on timer(2s)){
+        <app-list [listPart]="listPart"></app-list>
+        }
+    } @placeholder {
+    <div >placeholder </div>
+    } @loading {
+    <div>loading</div>
+    }@error {
+    <div>error</div>
+    }
+</div>
+
+}

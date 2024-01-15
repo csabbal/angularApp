@@ -1,8 +1,5 @@
-<h2>Characters</h2>
-<div class="pagination-wrapper">
-    <button (click)="setPage(-1)">PREV</button>
-    <button (click)="setPage(1)">NEXT</button>
-</div>
-<li *ngFor="let element of listElements">
-    <app-list-item [data]="element"></app-list-item>
-</li>
+<ul>
+    <li *ngFor="let element of listElements">
+        <app-list-item [data]="element"></app-list-item>
+    </li>
+</ul>
