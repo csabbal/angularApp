@@ -2,7 +2,6 @@ import { Component, importProvidersFrom } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { ListComponent } from './components/list/list.component';
-import { HttpClientModule } from '@angular/common/http';
 import { routes } from './app.routes';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { MenuComponent } from './components/menu/menu.component';
@@ -13,12 +12,12 @@ import { MenuComponent } from './components/menu/menu.component';
   imports: [
     CommonModule,
     RouterOutlet,
-    HttpClientModule,
     MenuComponent,
     WelcomeComponent,
     ListComponent,
     RouterModule
   ],
+  providers: [],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

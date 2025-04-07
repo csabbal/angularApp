@@ -1,5 +1,4 @@
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { Component, ElementRef, Input, NgZone, OnDestroy, OnInit, effect, signal } from '@angular/core';
 import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import { Subject, of } from 'rxjs';
@@ -14,7 +13,6 @@ import { ListItemComponent } from '../listItem/listItem.component';
   imports: [
     CommonModule,
     RouterOutlet,
-    HttpClientModule,
     ListItemComponent
   ],
   providers: [
