@@ -5,14 +5,13 @@ import { ActivatedRoute } from '@angular/router';
 import { CharacterService } from '../../services/character.service';
 
 @Component({
-  selector: 'app-item',
-  standalone: true,
-  imports: [
-    CommonModule
-  ],
-  providers: [CharacterService],
-  templateUrl: './item.component.html',
-  styleUrl: './item.component.scss'
+    selector: 'app-item',
+    imports: [
+        CommonModule
+    ],
+    providers: [CharacterService],
+    templateUrl: './item.component.html',
+    styleUrl: './item.component.scss'
 })
 export class ItemComponent {
   macska:any

@@ -4,6 +4,7 @@ import { AppComponent } from './app/app.component';
 import { importProvidersFrom } from '@angular/core';
 import { InMemoryScrollingFeature, InMemoryScrollingOptions, RouterModule, provideRouter, withInMemoryScrolling } from '@angular/router';
 import { routes } from './app/app.routes';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 
 
 const scrollConfig: InMemoryScrollingOptions = {
@@ -15,6 +16,6 @@ const inMemoryScrollingFeature: InMemoryScrollingFeature = withInMemoryScrolling
 
 bootstrapApplication(AppComponent, {
   ...appConfig,
-  providers: [provideRouter(routes, inMemoryScrollingFeature)],
+  providers: [provideRouter(routes, inMemoryScrollingFeature), provideHttpClient(withFetch())],
 })
   .catch((err) => console.error(err));

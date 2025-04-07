@@ -8,18 +8,16 @@ import { character } from '../../types/rickAndMorty';
 import { ListItemComponent } from '../listItem/listItem.component';
 
 @Component({
-  selector: 'app-list',
-  standalone: true,
-  imports: [
-    CommonModule,
-    RouterOutlet,
-    ListItemComponent
-  ],
-  providers: [
-    CharacterListService
-  ],
-  templateUrl: './list.component.html',
-  styleUrl: './list.component.scss'
+    selector: 'app-list',
+    imports: [
+        CommonModule,
+        ListItemComponent
+    ],
+    providers: [
+        CharacterListService
+    ],
+    templateUrl: './list.component.html',
+    styleUrl: './list.component.scss'
 })
 export class ListComponent implements OnInit, OnDestroy {
   @Input('listPart') listPart: number = 0
